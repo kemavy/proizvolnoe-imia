@@ -11,7 +11,6 @@ from PyQt5.QtGui import QPixmap, QPainter, QPen, QColor, QBrush, QPainterPath
 class Example(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('Ui.ui', self)
         self.setui()
 
     def setui(self):
@@ -19,6 +18,10 @@ class Example(QMainWindow):
         self.setWindowTitle('Супрематизм')
 
         self.flag = False
+
+        self.btn = QPushButton('Нарисовать окружность', self)
+        self.btn.resize(161, 28)
+        self.btn.move(320, 510)
         self.btn.clicked.connect(self.b)
 
     def b(self):
@@ -29,7 +32,7 @@ class Example(QMainWindow):
         if self.flag:
             qp = QPainter()
             qp.begin(self)
-            pen = QPen(Qt.yellow, 2)
+            pen = QPen(QColor(randrange(255), randrange(255), randrange(255)))
             qp.setPen(pen)
             a = randrange(1, 1000)
             qp.drawEllipse(400 - a//2, 400 - a//2, a, a)
